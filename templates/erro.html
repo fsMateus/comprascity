@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock %}
+{% block content %}
+
+    <div class="page-head" style="margin-bottom: 20px;">
+        <h2>Ooopss</h2>
+    </div>
+
+    <div class="block-flat">
+        <h3 class="text-center text-danger"><b>{{ titulo }}</b></h3>
+        {% if texto %}
+            <hr>
+            <p><b>{{ texto }}</b></p>
+        {% endif %}
+    </div>
+
+{% endblock %}

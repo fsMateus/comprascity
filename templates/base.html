@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="FSV90">
+    {% comment %}<link rel="shortcut icon" href="{{ request.data.estilos.favicon }}" />{% endcomment %}
+    <title>{% block titulo %}{% endblock %} </title>
+
+    {% include '_partials/head.html' %}
+
+    {% block extrahead %}{% endblock extrahead %}
+</head>
+
+<body class="animated">
+
+<div id="cl-wrapper">
+    {% include '_partials/sidebar.html' %}
+
+    <div class="container-fluid" id="pcont">
+        {% include '_partials/topbar.html' %}
+
+        <div class="cl-mcont">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block extrabottom %}{% endblock extrabottom %}
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% load l10n %}
+{% load crispy_forms_filters %}
+{% block scripts %}
+    <script>
+        // recebe um parametro -> $modal (modal que está aberto no momento)
+        window.modalform2jsonReady = (typeof window.modalform2jsonReady === 'function') ? window.modalform2jsonReady : '';
+        // recebe os parametros -> form, retorno (formulario e dados json retornados da requisicao)
+        window.modalform2jsonSucesso = (typeof window.modalform2jsonSucesso === 'function') ? window.modalform2jsonSucesso : '';
+        // recebe os parametros -> form, retorno (formulario e dados json retornados da requisicao)
+        window.modalform2jsonFalha = (typeof window.modalform2jsonFalha === 'function') ? window.modalform2jsonFalha : '';
+    </script>
+{% endblock %}
+{% block style %}
+{% endblock %}
+<form class="form" action="{{ MODAL_ACTION|default:'' }}" data-titulo="{{ MODAL_TITULO }}" method="post"
+      onsubmit="Plugins.form2json(this, modalform2jsonSucesso, modalform2jsonFalha);return false">
+
+    {% csrf_token %}
+
+    <div class="modal-body">
+        <div data-feedback="erros" class="alert alert-danger {{ MODAL_MENSAGEM|yesno:",hide" }}">
+            {% if MODAL_MENSAGEM %}{{ MODAL_MENSAGEM|safe|linebreaksbr }}{% endif %}
+        </div>
+
+        {{ MODAL_FORM|crispy }}
+
+        <!-- gambiarra para os navegadores nao pedirem para SALVAR SENHA, eh um saco -->
+        <input style="display:none" type="password" name="foilautofill" value=""/>
+
+        <div data-feedback="carregamento" class="icone-carregamento hide">
+            <div class="loader">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+            <div class="loader-text" data-text="Aguarde..."></div>
+        </div>
+
+        <div data-feedback="sucesso" class="alert alert-success hide"></div>
+    </div>
+    <div class="modal-footer">
+        {% block botoes %}
+            <button data-dismiss="modal" class="btn btn-default" type="button">
+                <i class="fa fa-remove"></i> Cancelar
+            </button>
+            <!-- NAO pode ser SUBMIT pq os navegadores enchem o SACO se houver PASSWORD no FORM -->
+            <!-- existe um script no 'core.js' para simular o submit (enter nas inputs) -->
+            <button data-form2json="submit" type="button" class="btn btn-primary">
+                {{ MODAL_ACAO|default:'<i class="fa fa-check"></i> Concluir'|safe }}
+            </button>
+        {% endblock %}
+    </div>
+</form>

@@ -1,0 +1,20 @@
+{% if messages %}
+    {% for m in messages %}
+        <div class="alert {{ m.tags }} alert-white-alt rounded mx-10">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {% if m.level == 20 %}
+                <div class="icon"><i class="fa fa-info-circle sign"></i></div>
+                <strong>Info!</strong> {{ m|safe }}
+            {% elif m.level == 25 %}
+                <div class="icon"><i class="fa fa-check sign"></i></div>
+                <strong>Sucesso!</strong> {{ m|safe }}
+            {% elif m.level == 30 %}
+                <div class="icon"><i class="fa fa-warning sign"></i></div>
+                <strong>Atenção!</strong> {{ m|safe }}
+            {% elif m.level == 40 %}
+                <div class="icon"><i class="fa fa-times-circle sign"></i></div>
+                <strong>Erro!</strong> {{ m|safe }}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}

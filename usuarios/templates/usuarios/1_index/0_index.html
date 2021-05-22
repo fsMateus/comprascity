@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Usuários{% endblock %}
+
+{% block content %}
+
+    <div class="page-head"><h2>Usuários</h2></div>
+
+    {% include 'usuarios/1_index/tabela_dados.html' %}
+
+{% endblock %}
+
+
+{% block extrahead %}
+    <style>
+        .clicavel {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}

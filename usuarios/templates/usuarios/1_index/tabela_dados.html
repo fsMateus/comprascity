@@ -1,0 +1,108 @@
+{% load l10n %}
+{% load static %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h3>
+                    Usuários Cadastrados
+                    <a class="btn btn-info pull-right" title="Cadastrar Usuário" href="{% url 'usuarios:novo_usuario' %}">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="content">
+                <div class="table-responsive">
+                    <table class="table table-bordered" data-page-length="25" id="datatable" >
+                        <thead>
+                            <tr>
+                                <th>CÓDIGO</th>
+                                <th>NOME USUÁRIO</th>
+                                <th>EMAIL</th>
+                                <th>NOME</th>
+                                <th>AÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in lista_grid %}
+                                <tr class="gradeA clicavel">
+                                    <td title="Código" class="{{ item.is_active|yesno:',text-danger' }}" onclick="window.open('{{ item.get_absolute_url }}')">
+                                        <strong>{{ item.pk }}</strong>
+                                    </td>
+                                    <td title="Nome de Usuário" class="{{ item.is_active|yesno:',text-danger' }}" onclick="window.open('{{ item.get_absolute_url }}')">
+                                        {{ item.username }}
+                                    </td>
+                                    <td title="E-mail" class="{{ item.is_active|yesno:',text-danger' }}" onclick="window.open('{{ item.get_absolute_url }}')">
+                                        <b>{{ item.email|default:'----' }}</b>
+                                    </td>
+                                    <td title="Nome Completo" class="{{ item.is_active|yesno:',text-danger' }}" onclick="window.open('{{ item.get_absolute_url }}')">
+                                        {{ item.get_full_name|default:'----' }}
+                                    </td>
+                                    <td title="Ação">
+                                        <a title="Alterar" class="btn btn-sm btn-warning" href="{% url 'usuarios:alterar_usuario' item.id %}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        {% comment %}<button class="btn btn-sm btn-danger" onclick="excluir_usuario('{{ item.id }}')">
+                                            <i class="fa fa-remove"></i>
+                                        </button>{% endcomment %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="6">Nenhuma informação disponível</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        //initialize the javascript
+        //Basic Instance
+        let lang = '{% static "flat_dream/js/jquery.datatables/plugins/languages/pt_br.json" %}';
+
+        $("#datatable").dataTable({
+            lengthChange: false,
+            language: {
+                url: lang
+            }
+        });
+
+        //Search input style
+        {% comment %}$('.dataTables_filter input').addClass('form-control').attr('placeholder', 'buscar...');{% endcomment %}
+    });
+    {% comment %}function excluir_usuario (codigo) {
+        let res = confirm("Realmente deseja excluir, este Usuário?");
+        if (res === true) {
+            let request_url = "{% url 'usuarios:json' %}";
+            $.ajax({
+                url: request_url,
+                type: 'POST',
+                dataType: 'json',
+                data: {dono: 'excluir_usuario', value: codigo, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                beforeSend: function () {
+                },
+                //OCORREU TUDO CERTO NA REQUISIÇÃO
+                success: function ($objeto) {
+                    $.gritter.add({
+                        title: 'Sucesso',
+                        position: 'bottom-right',
+                        text: $objeto.mensagem || 'Dados atualizados',
+                        class_name: 'success',
+                        time: 1700
+                    });
+
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1850);
+                }
+            });
+        }
+    }{% endcomment %}
+</script>

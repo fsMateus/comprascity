@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block titulo %}Página Inicial{% endblock %}
+{% block extrahead %}
+    <style>
+        .area-icones {
+            list-style: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .area-icones .area-icones-favorito {
+            background-color: #dddddd;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            margin-bottom: 5px;
+            position: relative;
+            transition-duration: 500ms;
+            transition-property: background-color, color;
+        }
+
+        .area-icones .area-icones-favorito:hover {
+            color: #dddddd;
+            background-color: #555;
+        }
+
+        .area-icones-icone {
+            font-size: 4em;
+        }
+
+        .area-icones-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            left: auto;
+            right: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+    <h2>Lista licitações compativeis</h2>
+{% endblock %}

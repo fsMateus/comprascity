@@ -1,0 +1,6 @@
+.env
+.ideia/
+*.sqlite3
+*.pyc
+.py[co]
+__pycache__

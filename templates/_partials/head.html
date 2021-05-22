@@ -1,0 +1,190 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'flat_dream/js/jquery.gritter/css/jquery.gritter.min.css' %}">
+<link rel="stylesheet" href="{% static 'flat_dream/js/jquery.nanoscroller/nanoscroller.css' %}">
+<link rel="stylesheet" href="{% static 'flat_dream/js/jquery.datatables/datatables.min.css' %}">
+<link rel="stylesheet" href="{% static 'flat_dream/js/jquery.datatables/DataTables-1.10.23/css/dataTables.bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'flat_dream/js/bootstrap/dist/css/bootstrap.min.css' %}">
+
+<script src="{% static 'flat_dream/js/jquery.min.js' %}"></script>
+<script src="{% static 'flat_dream/js/jquery.ui/jquery-ui.js' %}"></script>
+<script src="{% static 'flat_dream/js/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'flat_dream/js/behaviour/core.js' %}"></script>
+<script src="{% static 'flat_dream/js/jquery.cookie/jquery.cookie.min.js' %}"></script>
+<script src="{% static 'flat_dream/js/jquery.nanoscroller/jquery.nanoscroller.js' %}"></script>
+
+<script src="{% static 'jquery/ui/1.12.0/jquery-ui.min.js' %}"></script>
+
+<script src="{% static 'flat_dream/js/jquery.gritter/js/jquery.gritter.min.js' %}"></script>
+
+<script src="{% static "flat_dream/js/jquery.datatables/datatables.min.js" %}"></script>
+<script src="{% static 'flat_dream/js/jquery.datatables/DataTables-1.10.23/js/dataTables.bootstrap.min.js' %}"></script>
+
+
+<script src="{% static 'vendor/sweet-alert/sweetalert2.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'vendor/sweet-alert/sweetalert2.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'flat_dream/js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css' %}">
+<script src="{% static 'flat_dream/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'flat_dream/js/bootstrap.datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.min.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'flat_dream/js/jquery.select2/select2.min.css' %}">
+<script src="{% static 'flat_dream/js/jquery.select2/select2.min.js' %}"></script>
+<script src="{% static 'flat_dream/js/jquery.select2/select2_locale_pt-BR.min.js' %}"></script>
+
+<script src="{% static 'flat_dream/js/jquery.mask.js' %}"></script>
+<script src="{% static 'flat_dream/js/modernizr.js' %}"></script>
+<script src="{% static 'flat_dream/js/masonry.js' %}"></script>
+<script src="{% static 'flat_dream/js/moment.js' %}"></script>
+
+<script>
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    {% comment %}$.fn.modal.Constructor.prototype.enforceFocus = $.noop;{% endcomment %}
+</script>
+
+<link rel="stylesheet" href="{% static 'flat_dream/css/style-prussia.min.css' %}">
+
+<style>
+
+     .block-flat {
+        color: #333;
+     }
+
+    .cl-sidebar, .cl-sidebar .collapse-button{
+        background-color: #6c6e6f;
+    }
+
+    .cl-vnavigation li ul {
+        background-color: #6c6e6f;
+    }
+
+    .cl-sidebar .collapse-button button:hover,
+    .cl-vnavigation li a:hover{
+       background-color: #626263;
+    }
+
+    .row.row-detalhes {
+        margin-top: 0
+    }
+
+    .detalhes-cell {
+        padding-top: 22px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eeeeee;
+        font-size: 11pt;
+    }
+
+    .detalhes-cell::before {
+        content: attr(title);
+        position: absolute;
+        font-size: 8pt;
+        top: 2px;
+        opacity: .8;
+    }
+
+    .icone-sobreescrito {
+        position: absolute;
+        top: -10px;
+        padding: 4px 5px;
+        border-radius: 50% 50%;
+        right: -10px;
+    }
+
+    .label-dark, .badge-dark {
+        background-color: #23262b;
+        border-color: transparent;
+        color: #fff;
+    }
+
+    .sidebar-logo {
+        background-image: url("{% static 'img/logo_grande.png' %}");
+        background-position: center center;
+        background-size: 100% auto;
+        background-color: white;
+    }
+
+    .sb-collapsed .sidebar-logo {
+        background-image: url("{% static 'img/logo_pequena.png' %}");
+        background-position: center center;
+        background-size: 80% auto;
+        background-color: white;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 979px) {
+        .sidebar-logo {
+            background-image: url("{% static 'img/logo_pequena.png' %}");
+            background-position: center center;
+            background-size: 50% auto;
+            background-color: white;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .sb-collapsed .cl-sidebar .sidebar-logo,
+        .sidebar-logo {
+            background-image: url("{% static 'img/logo_grande.png' %}");
+            background-position: center center;
+            background-size: 50% auto;
+            background-color: white;
+        }
+
+    }
+
+    .navbar-collapse{
+        background-color: white;
+    }
+
+    #pcont{
+        background-image: url("{{ request.data.estilos.background_interna }}");
+        background-position: center center;
+        background-size: cover;
+        background-color: white;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    {% comment %}.cl-mcont{
+        background-color: transparent;
+    }{% endcomment %}
+
+    #head-nav.topbar .not-nav {
+        display: inline-block;
+    }
+
+    #head-nav.topbar .user-nav {
+        display: inline-block;
+    }
+
+    .profile_menu {
+        padding: 6px 6px 5px;
+    }
+</style>
+
+<script src="{% static 'js/custom.js' %}"></script>
+
