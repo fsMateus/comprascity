@@ -41,9 +41,35 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        .bg-white {
+            background-color: #fff;
+        }
     </style>
 
 {% endblock %}
 {% block content %}
-    <h2>Minhas Empresas</h2>
+    <h3>
+        Minhas Empresas
+        <a class="btn btn-info pull-right" title="Nova Empresa" href="{% url 'clients:incluir' %}">
+            <i class="fa fa-plus"></i>
+        </a>
+    </h3>
+
+    <div class="row">
+        {% for empresa in empresas %}
+            <div class="card bg-white col-sm-6 mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ empresa.cnpj}} # {{empresa.empresa_cnpj.first.name}}</h5>
+                <p class="card-text" style="font-weight: bold;">{{empresa.empresa_cnpj.first.primary_activity_description}} - {{empresa.empresa_cnpj.first.primary_activity_code}}</p>
+              </div>
+              <h5><em>Atividades Secundárias:</em></h5>
+              <ul class="list-group list-group-flush">
+                  {% for item in empresa.empresa_cnpj.first.secondary_activities.all %}
+                      <li class="list-group-item">{{item.description}} - {{item.code}}</li>
+                  {% endfor %}
+              </ul>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

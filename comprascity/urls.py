@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .settings import MEDIA_URL, MEDIA_ROOT
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,3 +24,4 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),
     path('usuarios/', include('usuarios.urls', namespace='usuarios')),
 ]
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

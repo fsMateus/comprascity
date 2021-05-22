@@ -1,3 +1,9 @@
 from django.contrib import admin
+from core.models import Licitacoes
 
-# Register your models here.
+
+class LicitacoesAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Licitacoes, LicitacoesAdmin)

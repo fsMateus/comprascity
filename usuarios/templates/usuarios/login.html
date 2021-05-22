@@ -11,16 +11,18 @@
         body.texture {
             background: #f0f0f0;
         }
-        .login-container .header .logo-img {
+        .login-container .header .logo-img{
             position: relative;
             left: auto;
             right: auto;
-            width: 100%;
             height: auto;
             vertical-align: middle;
             text-align: center;
             margin: 0;
             top: 0;
+        }
+        .logo-img {
+            width: 20%;
         }
         .rodape {
             position: absolute;
@@ -41,14 +43,12 @@
     <div class="middle-login">
         <div class="block-flat">
             <div class="header">
-                <h3 class="text-center">
-                    <img class="logo-img" src="" alt="Logo"/>
-                </h3>
+                <h4 class="text-center"><img class="logo-img" src="{% static 'img/logo_grande.png' %}" alt="Logo"/></h4>
             </div>
             <div>
                 <form style="margin-bottom: 0 !important;" class="form-horizontal" action="{% url 'usuarios:login' %}" method="post">
                     <div class="content">
-                        <h4 class="title">Informe suas credenciais</h4>
+                        <h5 class="title">Informe suas credenciais</h5>
                         {% csrf_token %}
                         {% if mensagem %}
                             <div class="alert alert-danger">
@@ -75,7 +75,7 @@
 </body>
 <footer class="rodape">
     <span class="corporacao">
-    FS Sistemas&copy; 2019-{% now 'Y' %}
+    PLAY DESIGN &copy; 2015-{% now 'Y' %}
     </span>
 </footer>
 </html>
