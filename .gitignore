@@ -1,5 +1,5 @@
 .env
-.ideia/
+.idea/
 *.sqlite3
 *.pyc
 .py[co]

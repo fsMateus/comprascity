@@ -31,6 +31,7 @@ class Licitacoes(models.Model):
     resumo = models.TextField()
     modalidade = models.IntegerField(choices=CONST.MODALIDADE.choices, verbose_name='Modalidade')
     edital = models.FileField(upload_to='media/documents')
+    content_edital = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return '{}#{}'.format(self.titulo, self.dou)

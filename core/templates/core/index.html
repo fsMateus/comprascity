@@ -2,6 +2,14 @@
 {% block titulo %}Página Inicial{% endblock %}
 {% block extrahead %}
     <style>
+        .block.block-color.concrete .header {
+            background-color: #a3b1b2;
+        }
+
+        .block.block-color.concrete .header h3 {
+            color: white;
+            font-weight: 600 !important;
+        }
         .area-icones {
             list-style: none;
             padding-left: 0;
@@ -41,9 +49,57 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        .bg-white {
+            background-color: #fff;
+            margin-bottom: 20px;
+            min-height: 20em;
+        }
+        .orange {
+            background-color: #fd7e14;
+        }
     </style>
 
 {% endblock %}
 {% block content %}
-    <h2>Lista licitações compativeis</h2>
+
+    {% if sugestoes %}<h3>Sugestões</h3>{% endif %}
+    <div class="row">
+        {% for item in sugestoes %}
+            <div class="col-sm-6">
+                <div class="card bg-white col-sm-12">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ item.titulo }} </h4>
+                        <p class="card-text" style="font-weight: bold;">Data de abertura: {{ item.data_abertura|date:'d/m/Y H:i:s' }}</p>
+                        <p class="card-text">Resumo: {{ item.resumo|truncatechars:300 }}</p>
+                        <span class="btn btn-primary">{{ item.get_modalidade_display }}</span>
+                        <a href="#" class="card-link btn orange pull-right">Download</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h3>Veja mais > </h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="block block-color concrete" style="margin-bottom: 10px">
+                {% include 'core/filtros.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for item in licitacoes %}
+            <div class="col-sm-6">
+                <div class="card bg-white col-sm-12">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ item.titulo }} </h4>
+                        <p class="card-text" style="font-weight: bold;">Data de abertura: {{ item.data_abertura|date:'d/m/Y H:i:s' }}</p>
+                        <p class="card-text">Resumo: {{ item.resumo|truncatechars:300 }}</p>
+                        <span class="btn btn-primary">{{ item.get_modalidade_display }}</span>
+                        <a href="#" class="card-link btn orange pull-right">Download</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
